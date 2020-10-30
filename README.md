@@ -9,6 +9,8 @@ This application has been developed for education purposes for [Istanbul Univers
     src="/assets/images/dsc.png" 
     alt="Google Developer Student Clubs Logo" 
     class="brand" 
+    width="30"
+    height="20"
 />
 </a>
 
@@ -16,7 +18,8 @@ This application has been developed for education purposes for [Istanbul Univers
 <img 
     src="/assets/images/youtube.png" 
     alt="Google Developer Student Clubs Logo" 
-    class="brand" 
+    width="30"
+    height="20" 
 />
 </a>
 
@@ -24,7 +27,8 @@ This application has been developed for education purposes for [Istanbul Univers
 <img 
     src="/assets/images/linkedin.png" 
     alt="Google Developer Student Clubs Logo" 
-    class="brand" 
+    width="30"
+    height="20"
 />
 </a>
 
@@ -32,25 +36,10 @@ This application has been developed for education purposes for [Istanbul Univers
 <img 
     src="/assets/images/discord.png" 
     alt="Google Developer Student Clubs Logo" 
-    class="brand"
+    width="30"
+    height="20"
 />
 </a>
-
-<style>
-    .brand{
-        width:30px;
-        height:20px;
-    }
-
-    .brand-long{
-        width:30px;
-        height:30px;
-    }
-
-    a{
-        margin-right:10px;
-    }
-</style>
 
 ## Instructions
 
