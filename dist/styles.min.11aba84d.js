@@ -184,7 +184,7 @@ function reloadCSS() {
 }
 
 module.exports = reloadCSS;
-},{"./bundle-url":"node_modules/parcel/src/builtins/bundle-url.js"}],"css/styles.css":[function(require,module,exports) {
+},{"./bundle-url":"node_modules/parcel/src/builtins/bundle-url.js"}],"css/styles.min.css":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -394,4 +394,4 @@ function hmrAcceptRun(bundle, id) {
   }
 }
 },{}]},{},["node_modules/parcel/src/builtins/hmr-runtime.js"], null)
-//# sourceMappingURL=/styles.b61e60ae.js.map
+//# sourceMappingURL=/styles.min.11aba84d.js.map

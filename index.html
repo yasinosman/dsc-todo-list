@@ -4,10 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DSC Todo List</title>
-    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="./css/styles.min.css">
 </head>
 <body>
-    <main id="app"></main>
+    <main id="app">
+        <div class="grid-container">
+            <header class="grid-header"></header>
+            <div class="grid-short">
+                <input type="text" class="form-input">
+                <button class="confirm">+</button>
+            </div>
+            <section class="grid-long">
+                <ul class="ul-list" id="todos-container"></ul>
+            </section>
+        </div>
+    </main>
     <script src="./src/app.js"></script>
 </body>
 </html>
