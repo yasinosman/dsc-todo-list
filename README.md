@@ -4,7 +4,7 @@
 
 This application has been developed for education purposes for [Istanbul University - Cerrahpaşa Google Developer Student Clubs](https://linktr.ee/dsciuc).
 
-<a target="_blank" href="https://dsc.community.dev/istanbul-cerrahpasa-university/">
+<a  href="https://dsc.community.dev/istanbul-cerrahpasa-university/" target="_blank">
 <img 
     src="/assets/images/dsc.png" 
     alt="Google Developer Student Clubs Logo" 
@@ -14,7 +14,7 @@ This application has been developed for education purposes for [Istanbul Univers
 />
 </a>
 
-<a target="_blank" href="https://www.youtube.com/channel/UCau1PxdSXHeHbyuvwLWrM9A/featured">
+<a  href="https://www.youtube.com/channel/UCau1PxdSXHeHbyuvwLWrM9A/featured" target="_blank">
 <img 
     src="/assets/images/youtube.png" 
     alt="Google Developer Student Clubs Logo" 
@@ -23,7 +23,7 @@ This application has been developed for education purposes for [Istanbul Univers
 />
 </a>
 
-<a target="_blank" href="https://www.linkedin.com/company/dsciuc/">
+<a  href="https://www.linkedin.com/company/dsciuc/" target="_blank">
 <img 
     src="/assets/images/linkedin.png" 
     alt="Google Developer Student Clubs Logo" 
@@ -32,7 +32,7 @@ This application has been developed for education purposes for [Istanbul Univers
 />
 </a>
 
-<a target="_blank" href="https://discord.com/invite/jDeT7dq">
+<a href="https://discord.com/invite/jDeT7dq"  target="_blank">
 <img 
     src="/assets/images/discord.png" 
     alt="Google Developer Student Clubs Logo" 
