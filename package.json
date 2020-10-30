@@ -1,0 +1,18 @@
+{
+  "name": "dsc-todo-list",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "dev-client": "parcel index.html",
+    "build-client": "parcel build --no-content-hash --no-source-maps index.html --public-url ./"
+  },
+  "author": "Yasin OSMAN",
+  "license": "MIT",
+  "devDependencies": {
+    "parcel": "^1.12.4"
+  },
+  "dependencies": {
+    "uuid": "^8.3.1"
+  }
+}
