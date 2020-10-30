@@ -4,8 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "dev-client": "parcel index.html",
-    "build-client": "parcel build --no-content-hash --no-source-maps index.html --public-url ./"
+    "dev": "parcel index.html",
+    "build": "parcel build --no-content-hash --no-source-maps index.html --public-url ./"
   },
   "author": "Yasin OSMAN",
   "license": "MIT",
