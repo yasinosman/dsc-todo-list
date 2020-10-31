@@ -1,4 +1,6 @@
-import {v4 as uuid} from "uuid"
+import { v4 as uuid } from "uuid"
+import { createHtmlElement } from "../utils"
+import "@fortawesome/fontawesome-free/css/all.min.css" 
 
 class TodoList{
     /**
@@ -11,11 +13,13 @@ class TodoList{
     constructor() {
         this.todos = this.getTodosFromLocalStorage()
 
-        if (!this.todos) {
+        if (this.todos === null || typeof this.todos === "undefined" || this.todos.length <= 0) {
             this.todos = [
                 {"id":uuid(), "todo": "DSC'ye uye ol", "isComplete": false},
                 {"id":uuid(), "todo": "Etkinliklere katil", "isComplete": false},
             ]
+
+            this.saveTodosToLocalStorage()
         }
 
         this.renderCurrentTodos()
@@ -32,8 +36,8 @@ class TodoList{
     setEventListeners() {
         const addTodoField = document.querySelector("#addTodo")
         const toggleTodoButtons = document.querySelectorAll(".toggleTodo")
-        const deleteTodoButtons = document.querySelectorAll(".deleteTodo")
-
+        const removeTodoButtons = document.querySelectorAll(".removeTodo")
+        const todoIcons = document.querySelectorAll("i")
 
         
         //Yeni bir todo yaratmak
@@ -54,9 +58,21 @@ class TodoList{
 
         
         //Var olan bir todoyu silmek
-        for (let i = 0; i < deleteTodoButtons.length; i++){
-            deleteTodoButtons[i].addEventListener("click", e => {
+        for (let i = 0; i < removeTodoButtons.length; i++){
+            removeTodoButtons[i].addEventListener("click", e => {
                 this.handleRemoveTodoClick(e.target.id)
+            })
+        }
+
+        //İkonlar hem todo işaretlemede hem de todo silmede kullanılabilir
+        for (let i = 0; i < todoIcons.length; i++){
+            todoIcons[i].addEventListener("click", e => {
+                if (e.target.parentElement.classList.contains("toggleTodo")) {
+                this.handleToggleTodoClick(e.target.parentElement.id)
+                }
+                if (e.target.parentElement.classList.contains("removeTodo")) {
+                    this.handleRemoveTodoClick(e.target.parentElement.id)
+                }
             })
         }
     }
@@ -89,18 +105,25 @@ class TodoList{
     addTodo(todo) {
         this.todos.push(todo)
         this.saveTodosToLocalStorage()
-        return this.renderCurrentTodos()
+        this.renderCurrentTodos()
+        this.setEventListeners()
     }
 
     getTodosFromLocalStorage() {
-        return JSON.parse(localStorage.getItem("todos"))
+        try {
+            return JSON.parse(localStorage.getItem("todos"))
+        } catch (error) {
+            console.log(error)
+            return null
+        }
+        
     }
     /**
      *  "TodoList" instance'ının sahip olduğu todoları, tarayıcının
      * localStorage'ına kaydeder.
      */
     saveTodosToLocalStorage() {
-        localStorage.setItem("todos", JSON.stringify(this.toddos))
+        localStorage.setItem("todos", JSON.stringify(this.todos))
     }
 
     /**
@@ -108,8 +131,60 @@ class TodoList{
      * yapılmasını sağlayan butonları HTML'e render eder.
      */
     renderCurrentTodos() {
+        const todoContainer = document.querySelector("#todo-container")
+        todoContainer.innerHTML = ""
         this.todos.forEach(todo => {
-            console.log(todo)
+            const todoDiv = createHtmlElement("div", "", {
+                class:"todo-container"
+            })
+            //Todo metni
+            const todoText = createHtmlElement("span", todo.todo, { class: "todo-text" })
+            if (todo.isComplete) {
+                todoText.classList.add("todo-crossed")
+            }
+            
+            todoDiv.appendChild(todoText)
+
+            //Todo'yu tamamlanmış/tamamlanmamış olarak işaretleme
+            if (todo.isComplete) {
+                const toggleAsCompletedButton = createHtmlElement(
+                    "button",
+                    "<i class='far fa-check-square'></i>",
+                    {
+                        id      :todo.id,
+                        class   :"toggleTodo"
+                    }
+                )
+
+                todoDiv.appendChild(toggleAsCompletedButton)
+            } else {
+                const toggleAsUncompletedButton = createHtmlElement(
+                    "button",
+                    "<i class='far fa-square'></i>",
+                    {
+                        id      :todo.id,
+                        class   :"toggleTodo"
+                    }
+                )
+
+                todoDiv.appendChild(toggleAsUncompletedButton)
+            }
+
+            //Todo'yu silme
+            const removeTodoButton = createHtmlElement(
+                "button",
+                "<i class='far fa-trash-alt'></i>",
+                {
+                    class   : "removeTodo",
+                    id      : todo.id
+                }
+            )
+
+            todoDiv.appendChild(removeTodoButton)
+
+            const todoListElement = createHtmlElement("li", "", { class: "todo" })
+            todoListElement.appendChild(todoDiv)
+            todoContainer.appendChild(todoListElement)
         })
     }
 
@@ -118,13 +193,10 @@ class TodoList{
      * @param {String} todoId 
      */
     handleRemoveTodoClick(todoId) {
-        const todoIndex = this.todos.findIndex(todo => todo.id === todoId)
-
-        if (todoIndex) {
-            this.todos = this.todos.splice(todoIndex, 1)
-            this.saveTodosToLocalStorage()
-            return this.renderCurrentTodos()
-        }
+        this.todos = this.todos.filter(todo => todo.id !== todoId)
+        this.saveTodosToLocalStorage()
+        this.renderCurrentTodos()
+        return this.setEventListeners()
     }
 
     /**
@@ -133,19 +205,15 @@ class TodoList{
      * @param {String} todoId 
      */
     handleToggleTodoClick(todoId) {
-        const todoIndex = this.todos.findIndex(todo => todo.id === todoId)
+        this.todos = this.todos.map(todo => 
+            todo.id === todoId ? {...todo, isComplete: !todo.isComplete} : todo    
+        )
 
-        if (todoIndex) {
-            this.todos[todoIndex] = {
-                id: todo.id,
-                todo: todo.todo,
-                isComplete: !todo.isComplete
-            }
-
-            this.saveTodosToLocalStorage()
+        this.saveTodosToLocalStorage()
             
-            return this.renderCurrentTodos()
-        }
+        this.renderCurrentTodos()
+
+        return this.setEventListeners()
     }   
 }
 

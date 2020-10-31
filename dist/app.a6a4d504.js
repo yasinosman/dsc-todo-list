@@ -952,7 +952,102 @@ var _stringify = _interopRequireDefault(require("./stringify.js"));
 var _parse = _interopRequireDefault(require("./parse.js"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./v1.js":"node_modules/uuid/dist/esm-browser/v1.js","./v3.js":"node_modules/uuid/dist/esm-browser/v3.js","./v4.js":"node_modules/uuid/dist/esm-browser/v4.js","./v5.js":"node_modules/uuid/dist/esm-browser/v5.js","./nil.js":"node_modules/uuid/dist/esm-browser/nil.js","./version.js":"node_modules/uuid/dist/esm-browser/version.js","./validate.js":"node_modules/uuid/dist/esm-browser/validate.js","./stringify.js":"node_modules/uuid/dist/esm-browser/stringify.js","./parse.js":"node_modules/uuid/dist/esm-browser/parse.js"}],"src/components/TodoList.js":[function(require,module,exports) {
+},{"./v1.js":"node_modules/uuid/dist/esm-browser/v1.js","./v3.js":"node_modules/uuid/dist/esm-browser/v3.js","./v4.js":"node_modules/uuid/dist/esm-browser/v4.js","./v5.js":"node_modules/uuid/dist/esm-browser/v5.js","./nil.js":"node_modules/uuid/dist/esm-browser/nil.js","./version.js":"node_modules/uuid/dist/esm-browser/version.js","./validate.js":"node_modules/uuid/dist/esm-browser/validate.js","./stringify.js":"node_modules/uuid/dist/esm-browser/stringify.js","./parse.js":"node_modules/uuid/dist/esm-browser/parse.js"}],"src/utils.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.createHtmlElement = createHtmlElement;
+
+/**
+ * Creates a DOM element based on input parameters
+ * @param {string} nodeType Type of the HTML element (p, div, a etc.)
+ * @param {string} nodeInnerHTML Inner HTML of the element
+ * @param {object} attributes Attributes object, attributes should be "object keys"
+ * and values should be "object values"
+ */
+function createHtmlElement(nodeType, nodeInnerHTML, attributes) {
+  var node = document.createElement(nodeType);
+  node.innerHTML = nodeInnerHTML;
+  Object.keys(attributes).forEach(function (key) {
+    node.setAttribute(key, attributes[key]);
+  });
+  return node;
+}
+},{}],"node_modules/parcel/src/builtins/bundle-url.js":[function(require,module,exports) {
+var bundleURL = null;
+
+function getBundleURLCached() {
+  if (!bundleURL) {
+    bundleURL = getBundleURL();
+  }
+
+  return bundleURL;
+}
+
+function getBundleURL() {
+  // Attempt to find the URL of the current script and use that as the base URL
+  try {
+    throw new Error();
+  } catch (err) {
+    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
+
+    if (matches) {
+      return getBaseURL(matches[0]);
+    }
+  }
+
+  return '/';
+}
+
+function getBaseURL(url) {
+  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)\/[^/]+$/, '$1') + '/';
+}
+
+exports.getBundleURL = getBundleURLCached;
+exports.getBaseURL = getBaseURL;
+},{}],"node_modules/parcel/src/builtins/css-loader.js":[function(require,module,exports) {
+var bundle = require('./bundle-url');
+
+function updateLink(link) {
+  var newLink = link.cloneNode();
+
+  newLink.onload = function () {
+    link.remove();
+  };
+
+  newLink.href = link.href.split('?')[0] + '?' + Date.now();
+  link.parentNode.insertBefore(newLink, link.nextSibling);
+}
+
+var cssTimeout = null;
+
+function reloadCSS() {
+  if (cssTimeout) {
+    return;
+  }
+
+  cssTimeout = setTimeout(function () {
+    var links = document.querySelectorAll('link[rel="stylesheet"]');
+
+    for (var i = 0; i < links.length; i++) {
+      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
+        updateLink(links[i]);
+      }
+    }
+
+    cssTimeout = null;
+  }, 50);
+}
+
+module.exports = reloadCSS;
+},{"./bundle-url":"node_modules/parcel/src/builtins/bundle-url.js"}],"node_modules/@fortawesome/fontawesome-free/css/all.min.css":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"./..\\webfonts\\fa-brands-400.eot":[["fa-brands-400.1bb139e6.eot","node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.eot"],"node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.eot"],"./..\\webfonts\\fa-brands-400.woff2":[["fa-brands-400.1d34615d.woff2","node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.woff2"],"node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.woff2"],"./..\\webfonts\\fa-brands-400.woff":[["fa-brands-400.eca31406.woff","node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.woff"],"node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.woff"],"./..\\webfonts\\fa-brands-400.ttf":[["fa-brands-400.df86de32.ttf","node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.ttf"],"node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.ttf"],"./..\\webfonts\\fa-brands-400.svg":[["fa-brands-400.f1eb0e8c.svg","node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.svg"],"node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.svg"],"./..\\webfonts\\fa-regular-400.eot":[["fa-regular-400.a2c1909d.eot","node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.eot"],"node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.eot"],"./..\\webfonts\\fa-regular-400.woff2":[["fa-regular-400.5ca8c932.woff2","node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.woff2"],"node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.woff2"],"./..\\webfonts\\fa-regular-400.woff":[["fa-regular-400.3c3cc54e.woff","node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.woff"],"node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.woff"],"./..\\webfonts\\fa-regular-400.ttf":[["fa-regular-400.cde05ce7.ttf","node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.ttf"],"node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.ttf"],"./..\\webfonts\\fa-regular-400.svg":[["fa-regular-400.6ef294e6.svg","node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.svg"],"node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.svg"],"./..\\webfonts\\fa-solid-900.eot":[["fa-solid-900.90890cef.eot","node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.eot"],"node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.eot"],"./..\\webfonts\\fa-solid-900.woff2":[["fa-solid-900.da0e0451.woff2","node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff2"],"node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff2"],"./..\\webfonts\\fa-solid-900.woff":[["fa-solid-900.935b31ea.woff","node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff"],"node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff"],"./..\\webfonts\\fa-solid-900.ttf":[["fa-solid-900.f2409036.ttf","node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.ttf"],"node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.ttf"],"./..\\webfonts\\fa-solid-900.svg":[["fa-solid-900.c87ba59a.svg","node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.svg"],"node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.svg"],"_css_loader":"node_modules/parcel/src/builtins/css-loader.js"}],"src/components/TodoList.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -961,6 +1056,16 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 
 var _uuid = require("uuid");
+
+var _utils = require("../utils");
+
+require("@fortawesome/fontawesome-free/css/all.min.css");
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -981,7 +1086,7 @@ var TodoList = /*#__PURE__*/function () {
 
     this.todos = this.getTodosFromLocalStorage();
 
-    if (!this.todos) {
+    if (this.todos === null || typeof this.todos === "undefined" || this.todos.length <= 0) {
       this.todos = [{
         "id": (0, _uuid.v4)(),
         "todo": "DSC'ye uye ol",
@@ -991,6 +1096,7 @@ var TodoList = /*#__PURE__*/function () {
         "todo": "Etkinliklere katil",
         "isComplete": false
       }];
+      this.saveTodosToLocalStorage();
     }
 
     this.renderCurrentTodos();
@@ -1011,7 +1117,8 @@ var TodoList = /*#__PURE__*/function () {
 
       var addTodoField = document.querySelector("#addTodo");
       var toggleTodoButtons = document.querySelectorAll(".toggleTodo");
-      var deleteTodoButtons = document.querySelectorAll(".deleteTodo"); //Yeni bir todo yaratmak
+      var removeTodoButtons = document.querySelectorAll(".removeTodo");
+      var todoIcons = document.querySelectorAll("i"); //Yeni bir todo yaratmak
 
       addTodoField.addEventListener("keypress", function (e) {
         if (e.keyCode === 13) {
@@ -1028,9 +1135,22 @@ var TodoList = /*#__PURE__*/function () {
       } //Var olan bir todoyu silmek
 
 
-      for (var _i = 0; _i < deleteTodoButtons.length; _i++) {
-        deleteTodoButtons[_i].addEventListener("click", function (e) {
+      for (var _i = 0; _i < removeTodoButtons.length; _i++) {
+        removeTodoButtons[_i].addEventListener("click", function (e) {
           _this.handleRemoveTodoClick(e.target.id);
+        });
+      } //İkonlar hem todo işaretlemede hem de todo silmede kullanılabilir
+
+
+      for (var _i2 = 0; _i2 < todoIcons.length; _i2++) {
+        todoIcons[_i2].addEventListener("click", function (e) {
+          if (e.target.parentElement.classList.contains("toggleTodo")) {
+            _this.handleToggleTodoClick(e.target.parentElement.id);
+          }
+
+          if (e.target.parentElement.classList.contains("removeTodo")) {
+            _this.handleRemoveTodoClick(e.target.parentElement.id);
+          }
         });
       }
     }
@@ -1066,12 +1186,18 @@ var TodoList = /*#__PURE__*/function () {
     value: function addTodo(todo) {
       this.todos.push(todo);
       this.saveTodosToLocalStorage();
-      return this.renderCurrentTodos();
+      this.renderCurrentTodos();
+      this.setEventListeners();
     }
   }, {
     key: "getTodosFromLocalStorage",
     value: function getTodosFromLocalStorage() {
-      return JSON.parse(localStorage.getItem("todos"));
+      try {
+        return JSON.parse(localStorage.getItem("todos"));
+      } catch (error) {
+        console.log(error);
+        return null;
+      }
     }
     /**
      *  "TodoList" instance'ının sahip olduğu todoları, tarayıcının
@@ -1081,7 +1207,7 @@ var TodoList = /*#__PURE__*/function () {
   }, {
     key: "saveTodosToLocalStorage",
     value: function saveTodosToLocalStorage() {
-      localStorage.setItem("todos", JSON.stringify(this.toddos));
+      localStorage.setItem("todos", JSON.stringify(this.todos));
     }
     /**
      *   Kullanıcının sahip olduğu todoları ve bu toddolar hakkında işlem
@@ -1091,8 +1217,48 @@ var TodoList = /*#__PURE__*/function () {
   }, {
     key: "renderCurrentTodos",
     value: function renderCurrentTodos() {
+      var todoContainer = document.querySelector("#todo-container");
+      todoContainer.innerHTML = "";
       this.todos.forEach(function (todo) {
-        console.log(todo);
+        var todoDiv = (0, _utils.createHtmlElement)("div", "", {
+          class: "todo-container"
+        }); //Todo metni
+
+        var todoText = (0, _utils.createHtmlElement)("span", todo.todo, {
+          class: "todo-text"
+        });
+
+        if (todo.isComplete) {
+          todoText.classList.add("todo-crossed");
+        }
+
+        todoDiv.appendChild(todoText); //Todo'yu tamamlanmış/tamamlanmamış olarak işaretleme
+
+        if (todo.isComplete) {
+          var toggleAsCompletedButton = (0, _utils.createHtmlElement)("button", "<i class='far fa-check-square'></i>", {
+            id: todo.id,
+            class: "toggleTodo"
+          });
+          todoDiv.appendChild(toggleAsCompletedButton);
+        } else {
+          var toggleAsUncompletedButton = (0, _utils.createHtmlElement)("button", "<i class='far fa-square'></i>", {
+            id: todo.id,
+            class: "toggleTodo"
+          });
+          todoDiv.appendChild(toggleAsUncompletedButton);
+        } //Todo'yu silme
+
+
+        var removeTodoButton = (0, _utils.createHtmlElement)("button", "<i class='far fa-trash-alt'></i>", {
+          class: "removeTodo",
+          id: todo.id
+        });
+        todoDiv.appendChild(removeTodoButton);
+        var todoListElement = (0, _utils.createHtmlElement)("li", "", {
+          class: "todo"
+        });
+        todoListElement.appendChild(todoDiv);
+        todoContainer.appendChild(todoListElement);
       });
     }
     /**
@@ -1103,15 +1269,12 @@ var TodoList = /*#__PURE__*/function () {
   }, {
     key: "handleRemoveTodoClick",
     value: function handleRemoveTodoClick(todoId) {
-      var todoIndex = this.todos.findIndex(function (todo) {
-        return todo.id === todoId;
+      this.todos = this.todos.filter(function (todo) {
+        return todo.id !== todoId;
       });
-
-      if (todoIndex) {
-        this.todos = this.todos.splice(todoIndex, 1);
-        this.saveTodosToLocalStorage();
-        return this.renderCurrentTodos();
-      }
+      this.saveTodosToLocalStorage();
+      this.renderCurrentTodos();
+      return this.setEventListeners();
     }
     /**
      *  Kullanıcı bir todo'ya ait tamamlanma durumunun değiştirilmesini sağlayan
@@ -1122,19 +1285,14 @@ var TodoList = /*#__PURE__*/function () {
   }, {
     key: "handleToggleTodoClick",
     value: function handleToggleTodoClick(todoId) {
-      var todoIndex = this.todos.findIndex(function (todo) {
-        return todo.id === todoId;
-      });
-
-      if (todoIndex) {
-        this.todos[todoIndex] = {
-          id: todo.id,
-          todo: todo.todo,
+      this.todos = this.todos.map(function (todo) {
+        return todo.id === todoId ? _objectSpread(_objectSpread({}, todo), {}, {
           isComplete: !todo.isComplete
-        };
-        this.saveTodosToLocalStorage();
-        return this.renderCurrentTodos();
-      }
+        }) : todo;
+      });
+      this.saveTodosToLocalStorage();
+      this.renderCurrentTodos();
+      return this.setEventListeners();
     }
   }]);
 
@@ -1143,7 +1301,7 @@ var TodoList = /*#__PURE__*/function () {
 
 var _default = TodoList;
 exports.default = _default;
-},{"uuid":"node_modules/uuid/dist/esm-browser/index.js"}],"src/app.js":[function(require,module,exports) {
+},{"uuid":"node_modules/uuid/dist/esm-browser/index.js","../utils":"src/utils.js","@fortawesome/fontawesome-free/css/all.min.css":"node_modules/@fortawesome/fontawesome-free/css/all.min.css"}],"src/app.js":[function(require,module,exports) {
 "use strict";
 
 var _TodoList = _interopRequireDefault(require("./components/TodoList"));
@@ -1183,7 +1341,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54632" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57581" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
