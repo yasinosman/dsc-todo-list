@@ -979,7 +979,7 @@ var TodoList = /*#__PURE__*/function () {
   function TodoList() {
     _classCallCheck(this, TodoList);
 
-    this.todos = JSON.parse(localStorage.getItem("todos"));
+    this.todos = this.getTodosFromLocalStorage();
 
     if (!this.todos) {
       this.todos = [{
@@ -1067,6 +1067,11 @@ var TodoList = /*#__PURE__*/function () {
       this.todos.push(todo);
       this.saveTodosToLocalStorage();
       return this.renderCurrentTodos();
+    }
+  }, {
+    key: "getTodosFromLocalStorage",
+    value: function getTodosFromLocalStorage() {
+      return JSON.parse(localStorage.getItem("todos"));
     }
     /**
      *  "TodoList" instance'ının sahip olduğu todoları, tarayıcının
@@ -1178,7 +1183,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49677" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54632" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

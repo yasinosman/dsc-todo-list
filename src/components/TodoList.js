@@ -9,7 +9,7 @@ class TodoList{
      * "eventleri" oluşturur.
      */
     constructor() {
-        this.todos = JSON.parse(localStorage.getItem("todos"))
+        this.todos = this.getTodosFromLocalStorage()
 
         if (!this.todos) {
             this.todos = [
@@ -92,6 +92,9 @@ class TodoList{
         return this.renderCurrentTodos()
     }
 
+    getTodosFromLocalStorage() {
+        return JSON.parse(localStorage.getItem("todos"))
+    }
     /**
      *  "TodoList" instance'ının sahip olduğu todoları, tarayıcının
      * localStorage'ına kaydeder.

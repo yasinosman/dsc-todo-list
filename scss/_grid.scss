@@ -1,0 +1,27 @@
+.grid {
+	width: 80vw;
+	height: 100vh;
+	max-width: 1280px;
+	margin: 0 auto;
+	display: grid;
+	grid-template-rows: 1fr 2fr 1fr 4fr 1fr;
+	grid-gap: 10px;
+
+	.grid-container {
+		width: 80%;
+		margin: 0 auto;
+	}
+
+	.grid-header {
+		grid-row: 2/3;
+	}
+
+	.grid-short {
+		grid-row: 3/4;
+	}
+
+	.grid-long {
+		grid-row: 4/5;
+		background-color: blue;
+	}
+}

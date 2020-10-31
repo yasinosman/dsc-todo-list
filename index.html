@@ -5,16 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DSC Todo List</title>
     <link rel="stylesheet" href="./css/styles.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
 </head>
 <body>
     <main id="app">
-        <div class="grid-container">
-            <header class="grid-header"></header>
-            <div class="grid-short">
-                <input type="text" class="form-input">
-                <button class="confirm">+</button>
+        <div class="grid">
+            <header class="grid-header grid-container">
+                <span class="primary-header header-element">
+                    Todo List
+                </span>
+                <span class="secondary-header header-element">
+                    Type what to do and hit enter
+                </span>
+            </header>
+            <div class="grid-short grid-container">
+                <div class="form-container">
+                    <input id="addTodo" type="text" class="form-input" placeholder="Do the laundry">
+                </div>
             </div>
-            <section class="grid-long">
+            <section class="grid-long grid-container">
                 <ul class="ul-list" id="todos-container"></ul>
             </section>
         </div>

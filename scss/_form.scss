@@ -1,0 +1,35 @@
+@import "variables";
+
+.form-container {
+	width: 80%;
+	height: 100%;
+	margin: 1.25rem auto;
+	display: flex;
+	justify-content: center;
+	gap: 0.5rem;
+
+	.form-input {
+		display: inline-block;
+		width: 70%;
+		height: 50%;
+		font-size: 1.25rem;
+		font-family: "Roboto", sans-serif;
+		border-radius: 5px;
+		padding-left: 0.75rem;
+		border: 0;
+		border-bottom: 2px solid white;
+		background-color: $mainGray;
+		color: white;
+	}
+
+	.form-input::placeholder {
+		color: white;
+		font-size: 1rem;
+		transition: border-color 0.5s, font-size 0.3s;
+	}
+
+	.form-input:focus::placeholder {
+		font-weight: bold;
+		font-size: 1.25rem;
+	}
+}
