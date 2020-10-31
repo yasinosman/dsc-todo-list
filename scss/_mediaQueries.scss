@@ -9,6 +9,7 @@
 		width: 50%;
 
 		.form-input {
+			padding-top: 0.2rem;
 		}
 
 		.form-input::placeholder {
@@ -30,10 +31,6 @@
 	}
 
 	#todo-list {
-		.todo:not(:last-child) {
-			border-bottom: 2px solid $mainGray;
-		}
-
 		.todo-text {
 			font-size: 0.75rem;
 		}
