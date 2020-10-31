@@ -10,12 +10,12 @@
 
 	.form-input {
 		display: inline-block;
-		width: 70%;
-		height: 50%;
+		width: 80%;
+		height: 70%;
 		font-size: 1.25rem;
 		font-family: "Roboto", sans-serif;
 		border-radius: 5px;
-		padding-left: 0.75rem;
+		padding: 0.5rem;
 		border: 0;
 		border-bottom: 2px solid white;
 		background-color: $mainGray;
@@ -25,7 +25,7 @@
 	.form-input::placeholder {
 		color: white;
 		font-size: 1rem;
-		transition: border-color 0.5s, font-size 0.3s;
+		transition: font-size 0.3s;
 	}
 
 	.form-input:focus::placeholder {

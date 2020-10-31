@@ -1,10 +1,47 @@
+.todo {
+	width: 100%;
+	margin: 0 auto;
+	list-style: none;
+
+	.todo-container {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		.todo-text,
+		.toggleTodo,
+		.removeTodo {
+			flex-grow: 0;
+			width: 50%;
+		}
+
+		.todo-text {
+			overflow-x: auto;
+			font-family: "Roboto", sans-serif;
+			font-size: 1rem;
+		}
+
+		.right {
+			display: flex;
+			flex-direction: row;
+			width: 30%;
+		}
+		button {
+			border-radius: 2px;
+			border: 0;
+			:hover {
+				cursor: pointer;
+			}
+		}
+	}
+}
+
 /*Todo'ların tamamlanmış olarak işaretlenmesi sonrasında çıkan animasyon*/
 @keyframes strike {
 	0% {
 		width: 0;
 	}
 	100% {
-		width: 100%;
+		width: 7rem;
 	}
 }
 .todo-crossed {

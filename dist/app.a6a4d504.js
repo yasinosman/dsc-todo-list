@@ -1224,28 +1224,35 @@ var TodoList = /*#__PURE__*/function () {
           class: "todo-container"
         }); //Todo metni
 
-        var todoText = (0, _utils.createHtmlElement)("span", todo.todo, {
+        var todoText = (0, _utils.createHtmlElement)("div", todo.todo, {
           class: "todo-text"
         });
 
         if (todo.isComplete) {
           todoText.classList.add("todo-crossed");
-        }
+        } //Metni CSS ile sol tarafa dayamak için
 
-        todoDiv.appendChild(todoText); //Todo'yu tamamlanmış/tamamlanmamış olarak işaretleme
+
+        todoText.classList.add("left");
+        todoDiv.appendChild(todoText); //  Butonların gireceği konteynır, CSS ile stil vermek
+        //için right classı eklendi
+
+        var todoButtonContainer = (0, _utils.createHtmlElement)("div", "", {
+          class: "right"
+        }); //Todo'yu tamamlanmış/tamamlanmamış olarak işaretleme
 
         if (todo.isComplete) {
           var toggleAsCompletedButton = (0, _utils.createHtmlElement)("button", "<i class='far fa-check-square'></i>", {
             id: todo.id,
             class: "toggleTodo"
           });
-          todoDiv.appendChild(toggleAsCompletedButton);
+          todoButtonContainer.appendChild(toggleAsCompletedButton);
         } else {
           var toggleAsUncompletedButton = (0, _utils.createHtmlElement)("button", "<i class='far fa-square'></i>", {
             id: todo.id,
             class: "toggleTodo"
           });
-          todoDiv.appendChild(toggleAsUncompletedButton);
+          todoButtonContainer.appendChild(toggleAsUncompletedButton);
         } //Todo'yu silme
 
 
@@ -1253,7 +1260,8 @@ var TodoList = /*#__PURE__*/function () {
           class: "removeTodo",
           id: todo.id
         });
-        todoDiv.appendChild(removeTodoButton);
+        todoButtonContainer.appendChild(removeTodoButton);
+        todoDiv.appendChild(todoButtonContainer);
         var todoListElement = (0, _utils.createHtmlElement)("li", "", {
           class: "todo"
         });

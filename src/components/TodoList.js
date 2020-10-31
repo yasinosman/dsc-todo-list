@@ -138,13 +138,23 @@ class TodoList{
                 class:"todo-container"
             })
             //Todo metni
-            const todoText = createHtmlElement("span", todo.todo, { class: "todo-text" })
+            const todoText = createHtmlElement("div", todo.todo, { class: "todo-text" })
             if (todo.isComplete) {
                 todoText.classList.add("todo-crossed")
             }
+
+            //Metni CSS ile sol tarafa dayamak için
+            todoText.classList.add("left")
             
             todoDiv.appendChild(todoText)
 
+            //  Butonların gireceği konteynır, CSS ile stil vermek
+            //için right classı eklendi
+            const todoButtonContainer = createHtmlElement(
+                "div",
+                "",
+                {class:"right"}
+            )
             //Todo'yu tamamlanmış/tamamlanmamış olarak işaretleme
             if (todo.isComplete) {
                 const toggleAsCompletedButton = createHtmlElement(
@@ -156,7 +166,7 @@ class TodoList{
                     }
                 )
 
-                todoDiv.appendChild(toggleAsCompletedButton)
+                todoButtonContainer.appendChild(toggleAsCompletedButton)
             } else {
                 const toggleAsUncompletedButton = createHtmlElement(
                     "button",
@@ -167,7 +177,7 @@ class TodoList{
                     }
                 )
 
-                todoDiv.appendChild(toggleAsUncompletedButton)
+                todoButtonContainer.appendChild(toggleAsUncompletedButton)
             }
 
             //Todo'yu silme
@@ -180,7 +190,9 @@ class TodoList{
                 }
             )
 
-            todoDiv.appendChild(removeTodoButton)
+            todoButtonContainer.appendChild(removeTodoButton)
+
+            todoDiv.appendChild(todoButtonContainer)
 
             const todoListElement = createHtmlElement("li", "", { class: "todo" })
             todoListElement.appendChild(todoDiv)
