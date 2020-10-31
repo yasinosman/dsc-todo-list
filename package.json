@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "parcel index.html",
     "build": "parcel build --no-content-hash --no-source-maps index.html --public-url ./",
-    "start": "parcel build --no-content-hash --no-source-maps index.html --public-url ./"
+    "start": "./node_modules/parcel-bundler/bin/cli.js index.html",
+    "heroku-postbuild": "parcel build index.html"
 
   },
   "author": "Yasin OSMAN",
