@@ -1,6 +1,7 @@
 import { v4 as uuid } from "uuid"
 import { createHtmlElement } from "../utils"
 import "@fortawesome/fontawesome-free/css/all.min.css" 
+import Notiflix from "notiflix"
 
 class TodoList{
     /**
@@ -24,7 +25,21 @@ class TodoList{
 
         this.renderCurrentTodos()
 
+        this.setupAddTodoForm()
+
         this.setEventListeners()
+
+        
+    }
+
+    /**
+     *  Yeni bir todo oluşturmak için kullanılan input alanını ve bu alana
+     * bir veri girildiğindde çalıştırılacak olan fonksiyonu ayarlar.
+     */
+    setupAddTodoForm() {
+        const addTodoField = document.querySelector("#addTodo")
+        //Yeni bir todo yaratmak
+        addTodoField.addEventListener("keypress", e => { this.handleAddTodoClick(e) })
     }
 
     /**
@@ -34,21 +49,10 @@ class TodoList{
      * işlemi gerçekleştiren fonksiyonlar çağırılmış olur.
      */
     setEventListeners() {
-        const addTodoField = document.querySelector("#addTodo")
         const toggleTodoButtons = document.querySelectorAll(".toggleTodo")
         const removeTodoButtons = document.querySelectorAll(".removeTodo")
         const todoIcons = document.querySelectorAll("i")
 
-        
-        //Yeni bir todo yaratmak
-        addTodoField.addEventListener("keypress", e => {
-            if (e.keyCode === 13) {
-                this.handleAddTodoClick(e.target.value);
-                e.target.value = "";
-            }
-        })
-
-        
         //Todoları tamamlanmış/tamamlanmamış olarak işaretlemek
         for (let i = 0; i < toggleTodoButtons.length; i++){
             toggleTodoButtons[i].addEventListener("click", e => {
@@ -81,19 +85,29 @@ class TodoList{
      * Kullanıcı yeni todo ekleme butonuna bastığında bu fonksiyon çalışır.
      * @param {{id:String, todo:String, isComplete:boolean}} todo 
      */
-    handleAddTodoClick(todo) {
-        const newTodo = {
-            "id": uuid(),
-            "todo": todo,
-            "isComplete":false
-        }
-
+    handleAddTodoClick(e) {
+        if (e.keyCode === 13) {
         //Eğer todo içeriği boş ise, kullanıcıya bir hata döndür.
-        if (todo === "") {
-            return null
-        } else {
-            //Todo içeriği boş değil ise bu todoyu kaydet.
-            return this.addTodo(newTodo)
+            if (e.target.value === "") {
+                Notiflix.Notify.Failure("Todo can not be empty", {
+                    clickToClose: true,
+                    timeout:2000
+                })
+            } else {
+                const newTodo = {
+                    "id": uuid(),
+                    "todo": e.target.value,
+                    "isComplete":false
+                }
+                Notiflix.Notify.Success("Todo created", {
+                    clickToClose: true,
+                    timeout:2000
+                })
+                //Reset form
+                e.target.value = ""
+                //Todo içeriği boş değil ise bu todoyu kaydet.
+                this.addTodo(newTodo)
+            }
         }
     }
 
@@ -131,7 +145,7 @@ class TodoList{
      * yapılmasını sağlayan butonları HTML'e render eder.
      */
     renderCurrentTodos() {
-        const todoContainer = document.querySelector("#todo-container")
+        const todoContainer = document.querySelector("#todo-list")
         todoContainer.innerHTML = ""
         this.todos.forEach(todo => {
             const todoDiv = createHtmlElement("div", "", {
