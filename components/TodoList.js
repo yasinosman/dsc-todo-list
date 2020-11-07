@@ -19,9 +19,18 @@ export default class TodoList {
   /**
    *    Tarayıcının localStorage'ından "todos" isimli veriyi çeker.
    */
-  getTodos() {}
+  getTodos() {
+    const todos = JSON.parse(localStorage.getItem("todos"))
+    if(todos === null){
+        return []
+    } else {
+        return todos
+    };
+  }
 
-  saveTodos() {}
+  saveTodos() {
+      localStorage.setItem("todos", JSON.stringify(this.todos))
+  }
 
   /**
    *    Ekrana üst kısımda yer alan ve resim, yenile butonu ve tarih
@@ -39,7 +48,10 @@ export default class TodoList {
 
   setupTodos() {
     if (this.todos !== null && this.todos.length > 0) {
-        //Todo instance'ları yarat...
+        document.querySelector("#list").innerHTML = "";
+        this.todos.forEach((to_do) => {
+            new Todo(to_do.todo, to_do.isComplete, to_do.id);
+        });
     }
 
     this.setEventListeners();
@@ -49,7 +61,12 @@ export default class TodoList {
     return new Header();
   }
 
-  setupAddNewTodoForm() {}
+  setupAddNewTodoForm() {
+    const todoInput = document.querySelector("#input");
+    todoInput.addEventListener("keypress", (e) => {
+      this.handleAddTodoEvent(e);
+    });
+  }
 
   /**
    *      Yapılacaklar yani "todo" ögelerinin sahip olduğu HTML elementlerini seçer.
@@ -83,7 +100,7 @@ export default class TodoList {
    * @param {*} e Event
    */
   handleToggleTodoEvent(e) {
-    //Eventi kullanarak todo id'sini bul...
+    const todoId = e.target.attributes.todoId.value;
 
     return this.toggleTodo(todoId);
   }
@@ -94,7 +111,10 @@ export default class TodoList {
    * @param {String} todoId Güncellenecek todo'nun id'si.
    */
   toggleTodo(todoId) {
-    //TodoList instance'ını güncelle...
+    //TodoList instance'ını güncelle
+    this.todos = this.todos.map((todo) =>
+      todo.id === todoId ? { ...todo, isComplete: !todo.isComplete } : todo
+    );
 
     //Değişiklikleri localStorage'a kaydet
     this.saveTodos();
@@ -108,7 +128,7 @@ export default class TodoList {
    * @param {*} e Event
    */
   handleDeleteTodoEvent(e) {
-    //Eventi kullanarak todo id'sini bul...
+    const todoId = e.target.attributes.todoId.value
 
     return this.deleteTodo(todoId);
   }
@@ -118,7 +138,8 @@ export default class TodoList {
    * @param {String} todoId Silinecek todo'nun id'si.
    */
   deleteTodo(todoId) {
-    //TodoList instance'ını güncelle...
+    //TodoList instance'ını güncelle
+    this.todos = this.todos.filter((todo) => todo.id !== todoId);
 
     //Değişiklikleri local storage'a kaydet
     this.saveTodos();
@@ -133,17 +154,24 @@ export default class TodoList {
    * @param {*} e Event
    */
   handleAddTodoEvent(e) {
-    //Kullanıcının enter tuşuna bastığını kontrol et...
-    
+    //Kullanıcının enter tuşuna bastığını kontrol et
+    if (e.keyCode === 13) {
       //Kullanıcının boş bir todo oluşturmadığını kontrol et
-
+      if (e.target.value !== "") {
         //Yeni bir todo objesi oluştur
-
+        const newTodo = {
+          id: uuid(),
+          todo: e.target.value,
+          isComplete: false,
+        };
 
         //Oluşturulan todo objesini kaydet
+        this.addTodo(newTodo);
 
         //Formu sıfırla
-
+        e.target.value = ""
+      }
+    }
   }
 
   /**
@@ -152,7 +180,8 @@ export default class TodoList {
    * @param {{id:String, todo:String, isComplete:boolean}} todo
    */
   addTodo(todo) {
-    //TodoList instance'ına söz konusu todo'yu ekle...
+    //TodoList instance'ına söz konusu todo'yu ekle
+    this.todos.push(todo);
 
     //Yapılacakları localStorage'a kaydet
     this.saveTodos();

@@ -1,0 +1,38 @@
+@import "variables";
+
+body{
+    padding: 0;
+    margin: 0;
+    background-color: $main-background-color;
+    font-family: $primary-font-family, $secondary-font-family;
+}
+
+/* ------------ h1 & h2 ------------ */
+h1{
+    color:$h1-color;
+    font-size:3rem;
+    text-align: center;
+}
+
+h2{
+    color:$h2-color;
+    font-size:1.5rem;
+    text-align: center;
+}
+
+/* ------------ container ------------ */
+.container{
+    padding:10px;
+    width:380px;
+    margin:0 auto;
+}
+
+/* ------------ header ------------ */
+@import "header";
+
+/* ------------ content ------------ */
+@import "content";
+
+
+/* ------------ add item ------------ */
+@import "add-item";

@@ -1,0 +1,34 @@
+.header{
+    width: 380px;
+    height:200px;
+    background-image: url('../img/dsc.png');
+    background-position: 0 58%;
+    background-size: 100% 200%;
+    background-repeat: no-repeat;
+    border-radius: 15px 15px 0 0;
+    position: relative;
+}
+.clear{
+    width : 30px;
+    height: 30px;
+    position: absolute;
+    right:20px;
+    top: 20px;
+}
+.clear i{
+    font-size: 30px;
+    color: $clear-color;
+}
+.clear i:hover{
+    cursor: pointer;
+    text-shadow: 1px 3px 5px #000;
+    transform: rotate(45deg);
+}
+#date{
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    color: $date-color;
+    font-size: 25px;
+    font-family: $primary-font-family, $secondary-font-family;
+}

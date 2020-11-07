@@ -9,7 +9,6 @@ export default class Header{
         this.setEventListeners()
     }
 
-    //Temizle butonuna basıldığında localStorage'ı sıfırla ve sayfayı yenile
     setEventListeners(){
         document.querySelector(".clear").addEventListener("click", () => {
             localStorage.clear();
