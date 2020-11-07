@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "parcel index.html",
     "build": "parcel build index.html --public-url ./",
+    "build-github-pages": "parcel build index.html --out-dir docs --public-url /dsc-todo-list/",
     "clean": "rm -rf .cache && rm -rf dist"
   },
   "keywords": [],
