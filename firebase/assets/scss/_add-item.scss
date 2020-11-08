@@ -1,0 +1,44 @@
+.add-to-do{
+    position: relative;
+    width: 360px;
+    height:40px;
+    background-color: #FFF;
+    padding: 10px;
+    border-top: 1px solid rgba(0, 0, 0, 0.3);
+}
+.add-to-do i{
+    position: absolute;
+    font-size: 40px;
+    color: $add-todo-color;
+}
+
+.add-to-do input{
+    position: absolute;
+    left: 50px;
+    height: 35px;
+    width: 310px;
+    background-color: transparent;
+    border: none;
+    font-size: 20px;
+    padding-left:10px;
+}
+.add-to-do input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color:$add-todo-color;
+    font-family: $primary-font-family, $secondary-font-family;
+    font-size: 20px;
+}
+.add-to-do input::-moz-placeholder { /* Firefox 19+ */
+    color: $add-todo-color;
+    font-family: $primary-font-family, $secondary-font-family;
+    font-size: 20px;
+}
+.add-to-do input:-ms-input-placeholder { /* IE 10+ */
+    color: $add-todo-color;
+    font-family: $primary-font-family, $secondary-font-family;
+    font-size: 20px;
+}
+.add-to-do input:-moz-placeholder { /* Firefox 18- */
+    color: $add-todo-color;
+    font-family: $primary-font-family, $secondary-font-family;
+    font-size: 20px;
+}
